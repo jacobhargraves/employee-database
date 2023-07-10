@@ -1,3 +1,4 @@
+// User input for start of application that allows them to select an action
 const userAction = [ 
     {
         type: 'list',
@@ -7,5 +8,7 @@ const userAction = [
                 'Add a role', 'Add an employee', 'Update an employee role']
     },
 ];
+
+// 
 
 module.exports = {userAction};

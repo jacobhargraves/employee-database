@@ -21,7 +21,6 @@ function userInput() {
     inquirer
     .prompt(questions.userAction)
     .then((action) => {
-        console.log(action);
         displayData(action);
     })
     .catch((error) => {

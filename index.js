@@ -38,6 +38,20 @@ function displayData(action) {
             }
             console.log(result);
           });
+    } else if (action.action === 'View all roles') {
+        db.query(`SELECT * FROM role`, (err, result) => {
+            if (err) {
+              console.log(err);
+            }
+            console.log(result);
+          });
+    } else if (action.action === 'View all employees') {
+        db.query(`SELECT * FROM employee`, (err, result) => {
+            if (err) {
+              console.log(err);
+            }
+            console.log(result);
+          });
     }
 }
 

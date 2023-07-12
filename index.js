@@ -90,6 +90,28 @@ function userInput() {
                     console.log(error);
                 } 
                 });
+        } else if (action.action === 'Update an employee role') {
+            inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    message: 'What is the id of the employee you wish to update?',
+                    name: 'employeeID',
+                },                
+                {
+                    type: 'input',
+                    message: "Enter the id of the employee's new role",
+                    name: 'newRoleID',
+                },
+            ])
+            .then((answer) => {
+                queryActions.updateEmployeeRole(answer);
+            })
+            .catch((error) => {
+                if (error.isTtyError) {
+                    console.log(error);
+                } 
+                });
         }
     })
     .catch((error) => {

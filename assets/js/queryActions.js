@@ -16,7 +16,7 @@ const db = mysql.createConnection(
   );
 
 function displayDepartments() {
-    db.query(`SELECT id, name FROM department`, (err, result) => {
+    db.query(`SELECT id, name FROM department;`, (err, result) => {
         if (err) {
           console.log(err);
         }
@@ -103,7 +103,7 @@ function addDept(department) {
 }
 
 function addRole(roleInput) {
-  let query = `INSERT INTO role (title, salary, department_id) VALUES ('${roleInput.roleName}', ${roleInput.roleSalary}, ${roleInput.roleDeptID})`;
+  let query = `INSERT INTO role (title, salary, department_id) VALUES ('${roleInput.roleName}', ${roleInput.roleSalary}, ${roleInput.roleDeptID});`;
   db.query(query, (err, result) => {
     if (err) {
       console.log(err);
@@ -113,7 +113,7 @@ function addRole(roleInput) {
 }
 
 function addEmployee(employeeInput) {
-  let query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${employeeInput.first_name}', '${employeeInput.last_name}', ${employeeInput.employeeRoleID}, ${employeeInput.employeeManager})`;
+  let query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${employeeInput.first_name}', '${employeeInput.last_name}', ${employeeInput.employeeRoleID}, ${employeeInput.employeeManager});`;
   db.query(query, (err, result) => {
     if (err) {
       console.log(err);
@@ -122,6 +122,14 @@ function addEmployee(employeeInput) {
   });
 }
 
-module.exports = {displayDepartments, displayEmployees, displayRoles, addDept, addRole,
-addEmployee
-};
+function updateEmployeeRole(newRoleInput) {
+  let query = `UPDATE employee SET role_id = ${newRoleInput.newRoleID} WHERE id = '${newRoleInput.employeeID}';`
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`Employee ${newRoleInput.employeeID}'s role was changed to role ID ${newRoleInput.newRoleID}`);
+  });
+}
+
+module.exports = {displayDepartments, displayEmployees, displayRoles, addDept, addRole, addEmployee, updateEmployeeRole};

@@ -17,6 +17,8 @@ In order to use this application, the user would have to download the files loca
 
 ## Usage
 
+link to video tutorial: https://drive.google.com/file/d/1pATk8Su3E1o79wkNn6cdW0SpZCxA113S/view
+
 The user will need to create the databases required for this application.
 To use this application, simply open the terminal and navigate to the employee-database folder.  Then enter the command "node index.js" and the user will be prompted with a list of commands.  Select the desired command and then follow the prompts.
 

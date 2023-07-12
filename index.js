@@ -13,6 +13,23 @@ function userInput() {
             queryActions.displayRoles();
         } else if (action.action === 'View all employees') {
             queryActions.displayEmployees();
+        } else if (action.action === 'Add a department') {
+            inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    message: 'What is the name of the department?',
+                    name: 'deptName',
+                },
+            ])
+            .then((answer) => {
+                queryActions.addDept(answer.deptName.trim());
+            })
+            .catch((error) => {
+                if (error.isTtyError) {
+                    console.log(error);
+                } 
+                });
         }
     })
     .catch((error) => {

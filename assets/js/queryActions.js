@@ -92,4 +92,14 @@ function displayEmployees() {
       });
 }
 
-module.exports = {displayDepartments, displayEmployees, displayRoles};
+function addDept(department) {
+  let query = `INSERT INTO department (name) VALUES ('${department}');`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`${department} added to database!`);
+  })
+}
+
+module.exports = {displayDepartments, displayEmployees, displayRoles, addDept};

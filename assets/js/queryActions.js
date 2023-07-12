@@ -70,7 +70,7 @@ function displayEmployees() {
     FROM employee AS emp
     JOIN role ON emp.role_id = role.id
     JOIN department AS dept ON role.department_id = dept.id
-    LEFT JOIN employee AS manager ON emp.manager_id = manager.id;`, (err, result) => {
+    LEFT JOIN employee AS manager ON emp.manager_id = manager.id ORDER BY employee_id ASC;`, (err, result) => {
         if (err) {
           console.log(err);
         }

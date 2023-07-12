@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const questions = require('./assets/js/questions');
 const queryActions = require('./assets/js/queryActions');
+const { getDeptNames } = require('./assets/js/queryActions');
 
 // gets user input for action
 function userInput() {
@@ -24,6 +25,33 @@ function userInput() {
             ])
             .then((answer) => {
                 queryActions.addDept(answer.deptName.trim());
+            })
+            .catch((error) => {
+                if (error.isTtyError) {
+                    console.log(error);
+                } 
+                });
+        } else if (action.action === 'Add a role') {
+            inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    message: 'What is the name of the role?',
+                    name: 'roleName',
+                },
+                {
+                    type: 'input',
+                    message: 'What is the salary of the role?',
+                    name: 'roleSalary',
+                },
+                {
+                    type: 'input',
+                    message: 'What is the department id of the role?',
+                    name: 'roleDeptID',
+                },
+            ])
+            .then((answer) => {
+                queryActions.addRole(answer);
             })
             .catch((error) => {
                 if (error.isTtyError) {

@@ -102,4 +102,16 @@ function addDept(department) {
   })
 }
 
-module.exports = {displayDepartments, displayEmployees, displayRoles, addDept};
+function addRole(roleInput) {
+  let query = `INSERT INTO role (title, salary, department_id) VALUES ('${roleInput.roleName}', ${roleInput.roleSalary}, ${roleInput.roleDeptID})`
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`${roleInput.roleName} added to database!`);
+  })
+}
+
+module.exports = {displayDepartments, displayEmployees, displayRoles, addDept, addRole,
+  
+};

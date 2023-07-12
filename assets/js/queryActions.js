@@ -65,7 +65,7 @@ function displayRoles() {
 
 function displayEmployees() {
     db.query(`SELECT emp.id AS employee_id, emp.first_name, emp.last_name, 
-    role.title, dept.name, role.salary, 
+    role.title, dept.name AS department_name, role.salary, 
     CONCAT(manager.first_name, ' ', manager.last_name) AS manager_name
     FROM employee AS emp
     JOIN role ON emp.role_id = role.id
@@ -103,7 +103,7 @@ function addDept(department) {
 }
 
 function addRole(roleInput) {
-  let query = `INSERT INTO role (title, salary, department_id) VALUES ('${roleInput.roleName}', ${roleInput.roleSalary}, ${roleInput.roleDeptID})`
+  let query = `INSERT INTO role (title, salary, department_id) VALUES ('${roleInput.roleName}', ${roleInput.roleSalary}, ${roleInput.roleDeptID})`;
   db.query(query, (err, result) => {
     if (err) {
       console.log(err);
@@ -112,6 +112,16 @@ function addRole(roleInput) {
   })
 }
 
+function addEmployee(employeeInput) {
+  let query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${employeeInput.first_name}', '${employeeInput.last_name}', ${employeeInput.employeeRoleID}, ${employeeInput.employeeManager})`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`${employeeInput.first_name} ${employeeInput.last_name} added to database!`);
+  });
+}
+
 module.exports = {displayDepartments, displayEmployees, displayRoles, addDept, addRole,
-  
+addEmployee
 };

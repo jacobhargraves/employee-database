@@ -58,6 +58,38 @@ function userInput() {
                     console.log(error);
                 } 
                 });
+        } else if (action.action === 'Add an employee') {
+            inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    message: 'What is the first name of the employee?',
+                    name: 'first_name',
+                },
+                {
+                    type: 'input',
+                    message: 'What is the last name of the employee?',
+                    name: 'last_name',
+                },
+                {
+                    type: 'input',
+                    message: 'What is the role id of the employee?',
+                    name: 'employeeRoleID',
+                },
+                {
+                    type: 'input',
+                    message: 'What is the id of the employee manager?',
+                    name: 'employeeManager',
+                },
+            ])
+            .then((answer) => {
+                queryActions.addEmployee(answer);
+            })
+            .catch((error) => {
+                if (error.isTtyError) {
+                    console.log(error);
+                } 
+                });
         }
     })
     .catch((error) => {
